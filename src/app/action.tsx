@@ -8,7 +8,7 @@ export type Job = {
   title: string;
   company: string;
   location: string;
-  salary?: string;
+  salary?: string | number;
   description: string;
   createdAt: Date;
 };
@@ -40,7 +40,7 @@ export async function addJob(
   title: string,
   company: string,
   location: string,
-  salary: string,
+  salary: string | number,
   description: string
 ): Promise<Job> {
   try {
@@ -95,3 +95,4 @@ export async function getJobApplications(jobId: string): Promise<Application[]> 
     throw new Error("Failed to fetch applications");
   }
 }
+

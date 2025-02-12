@@ -10,6 +10,7 @@ import { NextResponse } from "next/server";
 //     return NextResponse.json({ error: "Failed to fetch jobs" }, { status: 500 });
 //   }
 // }
+
 export async function GET() {
   try {
     const jobs = await prisma.job.findMany(); // Fetch jobs from DB
