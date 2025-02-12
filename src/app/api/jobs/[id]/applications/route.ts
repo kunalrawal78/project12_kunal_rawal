@@ -14,3 +14,4 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     return NextResponse.json({ error: "Failed to fetch applications" }, { status: 500 });
   }
 }
+

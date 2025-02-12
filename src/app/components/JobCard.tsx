@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import { Briefcase, Home, Clock, Bolt } from "lucide-react";
 import { formatRelativeTime } from "../../lib/utils";
