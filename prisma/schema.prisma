@@ -1,0 +1,42 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model Application {
+  id             String   @id @default(uuid())  
+  name           String
+  email          String   @unique
+  phone          String
+  currentCompany String?
+  experience     Int
+  noticePeriod   String
+  expectedSalary Int
+  resume         String   // URL or file path
+  coverLetter    String?  
+  jobId          String
+  job            Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  status         ApplicationStatus @default(PENDING)  // ✅ Now it references the enum
+  createdAt      DateTime @default(now()) 
+}
+
+model Job {
+  id           String        @id @default(uuid())
+  title        String
+  company      String
+  salary       Int           // Use Int for whole numbers or Float for decimals
+  location     String
+  description  String
+  createdAt    DateTime @default(now()) 
+  applications Application[]
+}
