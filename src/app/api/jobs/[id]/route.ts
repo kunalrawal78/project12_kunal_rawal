@@ -34,11 +34,12 @@ export async function GET(req: Request, { params }: { params: Promise<{id:string
 
 
 // Update a job by ID
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, { params }: { params: Promise<{id:string}> }) {
   try {
+    const id=(await params).id;
     const { title, company, location, description, salary } = await req.json();
     const updatedJob = await prisma.job.update({
-      where: { id: params.id },
+      where: { id: id },
       data: { title, company, location, description, salary },
     });
     return NextResponse.json(updatedJob);
@@ -55,8 +56,9 @@ import { PrismaClient } from "@prisma/client";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { jobId?: string } }
-) {
+  { params }: { params: Promise<{jobId:string}>} )
+   {
+  const jobId=(await params).jobId;
   console.log("Received params:", params);
   const body = await request.json();
   const bodyJobId = body.jobId;
@@ -65,7 +67,7 @@ export async function DELETE(
     return NextResponse.json({ error: "Job ID is required" }, { status: 400 });
   }
 
-  const { jobId } = params;
+
 
   try {
     // Extract jobId from the request body
