@@ -118,7 +118,7 @@ export default function JobApplicationForm({ job }: { job: Job }) {
           <CardTitle className="text-2xl font-bold text-gray-800">Apply for {job.title}</CardTitle>
           <p className="text-gray-600">{job.company} - {job.location}</p>
           <p className="text-gray-500 text-sm">{job.description}</p>
-          <p className="text-gray-700 font-medium mt-2">Salary: ${job.salary}</p>
+          <p className="text-gray-700 font-medium mt-2">Salary:₹{job.salary}</p>
         </CardHeader>
         <CardContent>
           {submitStatus && (

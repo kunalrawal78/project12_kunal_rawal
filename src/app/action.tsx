@@ -8,7 +8,7 @@ export type Job = {
   title: string;
   company: string;
   location: string;
-  salary?: string | number;
+  salary?: string;
   description: string;
   createdAt: Date;
 };
@@ -40,7 +40,7 @@ export async function addJob(
   title: string,
   company: string,
   location: string,
-  salary: string | number,
+  salary: number ,
   description: string
 ): Promise<Job> {
   try {
