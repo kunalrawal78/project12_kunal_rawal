@@ -54,9 +54,9 @@ export async function POST(req: Request) {
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { jobId: string } }
+  { params }: { params: Promise<{jobId:string}>}
 ) {
-  const { jobId } = params; // Extract jobId from params
+  const jobId=(await params).jobId; // Extract jobId from params
 
   console.log("Received jobId:", jobId);
 
